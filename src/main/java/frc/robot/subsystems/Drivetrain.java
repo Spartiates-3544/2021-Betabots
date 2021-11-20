@@ -11,7 +11,6 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
-import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -46,18 +45,13 @@ private final AHRS m_gyro;
     m_rightmotors = new SpeedControllerGroup(right1, right2, right3);
     m_drive = new DifferentialDrive(m_leftmotors, m_rightmotors);
     m_gyro = new AHRS(SPI.Port.kMXP);
+    m_drive.setDeadband(0.1); //Deadzone
     
     }
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
-    }
-
-    @Override
-    public void simulationPeriodic() {
-        // This method will be called once per scheduler run when in simulation
 
     }
 
@@ -69,11 +63,26 @@ private final AHRS m_gyro;
         m_drive.setMaxOutput(maxOutput);
       }
 
-      public double getTurnRate() {
+    public double getTurnRate() {
         return m_gyro.getRate() * (Constants.DriveConstants.kGyroReversed ? -1.0 : 1.0);
       }
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+
+    public void setMotors(double leftSpeed, double rightSpeed) {
+        m_leftmotors.set(leftSpeed);
+        m_rightmotors.set(rightSpeed);
+    }
+
+    public double getEncoderMeters() {
+        return left1.getSelectedSensorPosition() + -right1.getSelectedSensorPosition() /2 * Constants.DriveConstants.kEncoderTick2Meter;
+    }
+
+    public double getGyroAngle() {
+        return m_gyro.getAngle();
+    }
+
+    public void resetGyro() {
+        m_gyro.reset();
+    }
 
 }
 

@@ -21,12 +21,10 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import com.ctre.phoenix.Util;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.controller.PIDController;
-import frc.robot.subsystems.*;
 
 
 
@@ -99,6 +97,8 @@ private final XboxController xboxController1 = new XboxController(0);
                 output -> m_drivetrain.arcadeDrive(xboxController1.getRawAxis(XboxController.Axis.kLeftY.value), output),
                 // Require the robot drive
                 m_drivetrain));
+
+    new JoystickButton(xboxController1, Button.kA.value).whileActiveOnce(new DriveForwardCmd(m_drivetrain, 10)); //TODO Remove, temporary (this is an autonomous command)
   }
 
 public XboxController getXboxController1() {

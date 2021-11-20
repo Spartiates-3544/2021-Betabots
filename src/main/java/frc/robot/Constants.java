@@ -32,6 +32,15 @@ public class Constants {
        public static final double kStabilizationP = 1;
        public static final double kStabilizationI = 0.5;
        public static final double kStabilizationD = 0;
+       public static final double kEncoderTick2Inches = 0.001227184630; //Distance per tick in inches //10240 ticks = 1 rotation of the wheels (1/5 reduction, 2048CPR encoder)
+       public static final double kEncoderTick2Meter = 0.000029765625; //Distance per tick in meters //10240 ticks = 1 rotation of the wheels (1/5 reduction, 2048CPR encoder)
+       public static final double kAutoDriveForwardSpeed = 0.5;
+       public static final double kAutoDriveTurnSpeed = 0.2;
      }
+
+    public static final class ArmConstants {
+      public static final int kArmMotorPort = 6;
+      public static final int kClawMotorPort = 7;
+    }
 }
 
