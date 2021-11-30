@@ -29,18 +29,25 @@ public class Constants {
        public static final int kRightMotor2Port = 4;
        public static final int kRightMotor3Port = 5; 
        public static final boolean kGyroReversed = false;
-       public static final double kStabilizationP = 1;
-       public static final double kStabilizationI = 0.5;
-       public static final double kStabilizationD = 0;
+       public static final double kStabilizationP = 0.2;
+       public static final double kStabilizationI = 0.2; //TODO Tune these values for the robot
+       public static final double kStabilizationD = 0.2;
        public static final double kEncoderTick2Inches = 0.001227184630; //Distance per tick in inches //10240 ticks = 1 rotation of the wheels (1/5 reduction, 2048CPR encoder)
        public static final double kEncoderTick2Meter = 0.000029765625; //Distance per tick in meters //10240 ticks = 1 rotation of the wheels (1/5 reduction, 2048CPR encoder)
        public static final double kAutoDriveForwardSpeed = 0.5;
        public static final double kAutoDriveTurnSpeed = 0.2;
      }
 
+
+     //TODO GODDAMMIT CHECK EVERYTHING
     public static final class ArmConstants {
       public static final int kArmMotorPort = 6;
       public static final int kClawMotorPort = 7;
+      public static final int kTopLimitSwitchPort = 0; //TODO Change
+      public static final int kBottomLimitSwitchPort = 1; //TODO Change
+      public static final double kClawOpenSpeed = -0.1; //10% reversed
+      public static final double kClawCloseSpeed = 0.1; //10% forward
+      public static final int kVerticalAxisJoystick = 1; //TODO Change/make sure that this is the right axis number
     }
 }
 

@@ -1,19 +1,15 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Arm extends SubsystemBase{
     private TalonFX arm;
-    private TalonSRX claw;
 
     public Arm() {
         arm = new TalonFX(Constants.ArmConstants.kArmMotorPort);
-        claw = new TalonSRX(Constants.ArmConstants.kClawMotorPort);
     }
 
     @Override
@@ -21,9 +17,26 @@ public class Arm extends SubsystemBase{
         // This method will be called once per scheduler run
     }
 
-    public void clawState(boolean openclose) {
-        if (openclose) {
-            claw.set(TalonSRXControlMode.PercentOutput, 0.1);
+/*
+    public void openClaw() {
+        if (isTopLimitSwitchPressed()) {
+            claw.set(ControlMode.PercentOutput, 0);
+        } else {
+            claw.set(ControlMode.PercentOutput, Constants.ArmConstants.kClawOpenSpeed);
         }
     }
+
+    public void closeClaw() {
+        if (isBottomLimitSwitchPressed()) {
+            claw.set(ControlMode.PercentOutput, 0);
+        } else {
+            claw.set(ControlMode.PercentOutput, Constants.ArmConstants.kClawCloseSpeed);
+        }
+    }
+*/
+
+    public void setArm(double armMotorOutput) {
+        arm.set(TalonFXControlMode.PercentOutput, armMotorOutput);
+    }
+
 }
